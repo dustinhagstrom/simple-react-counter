@@ -10,7 +10,7 @@ function Counter() {
     setCount(count + 1);
     let ourStars = starsArray;
     if (count >= 0) {
-      ourStars.push(<Stars />);
+      ourStars.push(<Stars key={count} />);
       setStars(ourStars);
     }
   }
