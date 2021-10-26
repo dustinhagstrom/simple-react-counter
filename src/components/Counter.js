@@ -1,17 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "./Button";
+import Stars from "./Stars";
 
 function Counter() {
   const [count, setCount] = useState(0);
-
-  //   useEffect(() => {}, [count]);
+  const [starsArray, setStars] = useState([]);
 
   function add1() {
     setCount(count + 1);
+    let ourStars = starsArray;
+    if (count >= 0) {
+      ourStars.push(<Stars />);
+      setStars(ourStars);
+    }
   }
 
   function sub1() {
     setCount(count - 1);
+    let ourStars = starsArray;
+    if (count > 0) {
+      ourStars.pop();
+      setStars(ourStars);
+    }
   }
 
   return (
@@ -19,6 +29,8 @@ function Counter() {
       <Button onClick={() => add1()} label="Addition-Button" />
       <div>{count}</div>
       <Button onClick={() => sub1()} label="Subtract-Button" />
+      <div>Stars can appear below</div>
+      <div>{starsArray}</div>
     </div>
   );
 }
